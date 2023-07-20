@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Olieinikov\OrderData\Api\OrderDataInterface" type="Olieinikov\OrderData\Model\OrderData" />
+    <type name="Olieinikov\OrderData\Model\Client\Guzzle">
+        <arguments>
+            <argument name="logger" xsi:type="object">CustomLogger</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="CustomLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">customLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Olieinikov\OrderData\Model\Logger\CustomLogger</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
